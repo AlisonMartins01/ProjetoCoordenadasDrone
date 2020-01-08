@@ -13,7 +13,7 @@ namespace Projeto
 
             Evaluate coordenada = new Evaluate(x);
 
-            Console.WriteLine(Evaluate.PosicaoCartesiana(null));
+            Console.WriteLine(Evaluate.PosicaoCartesiana(x));
 
 
         }
