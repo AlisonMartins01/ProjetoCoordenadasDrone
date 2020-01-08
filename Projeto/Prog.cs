@@ -3,7 +3,7 @@ using System;
 
 namespace Projeto
 {
-    class Program
+    public class Prog
     {
         static void Main(string[] args)
         {
@@ -11,9 +11,9 @@ namespace Projeto
             Console.Write("Insira as coordenadas: ");
             var x = Console.ReadLine();
 
-            Coordenada coordenada = new Coordenada();
+            Evaluate coordenada = new Evaluate(x);
 
-            Console.WriteLine(Coordenada.PosicaoCartesiana(x));
+            Console.WriteLine(Evaluate.PosicaoCartesiana(null));
 
 
         }

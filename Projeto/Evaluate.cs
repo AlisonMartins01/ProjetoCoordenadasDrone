@@ -4,13 +4,30 @@ using System.Text;
 
 namespace Projeto
 {
-    public class Coordenada
+    public class Evaluate
     {
         public string Comandos { get; set; }
 
+        public Evaluate(string comando)
+        {
+            Comandos = comando;
+        }
+
         public static string PosicaoCartesiana(string stringDeCoordenadas) //Metodo que recebe o comando em forma de string e retorna as coordenadas
         {
+            if (stringDeCoordenadas == null)
+            {
+                return ("(999, 999)");
+            }
+
             char[] vetorDeChar = stringDeCoordenadas.ToCharArray();
+
+            if (stringDeCoordenadas == "") {
+                return ("(999, 999)");
+            }
+            if (Int32.TryParse(vetorDeChar[0].ToString(), out int number)){
+                return ("(999, 999)");
+            };
 
             return TratamentoDeArray(vetorDeChar);
         }
@@ -26,6 +43,7 @@ namespace Projeto
             {
                 bool success = Int32.TryParse(vetor[contador].ToString(), out int number);
 
+                
                 if (!success)
                 {
                     vetordeString[contadorString] = vetor[contador].ToString();
@@ -59,8 +77,8 @@ namespace Projeto
 
         private static string SomaCoordenadas(string[] array) //Metodo que faz trata os comandos e retorna as coordenadas X e Y
         {
-            int posicaoX = 0;
-            int posicaoY = 0;
+            double posicaoX = 0;
+            double posicaoY = 0;
             int contador = 0;
 
             while (contador < array.Length)
@@ -112,7 +130,7 @@ namespace Projeto
                         if (Convert.ToDouble(valor) < 1 || Convert.ToDouble(valor) > 2147483647) {
                             return ("(999 ,999)");
                         }
-                        posicaoY =+ Convert.ToInt32(valor);
+                        posicaoY += Convert.ToInt32(valor);
 
                     }
                     else if (arrayChar[0] == 'S')
@@ -175,6 +193,9 @@ namespace Projeto
                 contador++;
             } //laço que realiza as somas das devidas coordenadas com e sem passo
 
+            if (posicaoX > 2147483647 || posicaoY > 2147483647) {
+                return ("(999, 999)");
+            }
             return ("("+posicaoX+", "+posicaoY+")");
         }
 
